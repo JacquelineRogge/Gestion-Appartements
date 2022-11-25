@@ -1,0 +1,38 @@
+[
+  {
+    "no-civ": 1762,
+    "rue": "rue Wellington",
+    "ville": "Verdun",
+    "code-postal": "H4G 1Y1",
+    "prenom": "Jacques",
+    "nom": "Gamache",
+    "telephone": "(514) 761-0921"
+  },
+  {
+    "no-civ": 1881,
+    "rue": "Lamarche",
+    "ville": "Sherbrooke",
+    "code-postal": "J1E 2E7",
+    "prenom": "Nicole",
+    "nom": "Lebel",
+    "telephone": "(819) 881-1221"
+  },
+  {
+    "no-civ": 2001,
+    "rue": "3e avenue",
+    "ville": "Montréal",
+    "code-postal": "H8P 4P3",
+    "prenom": "Benoît",
+    "nom": "Lebel",
+    "telephone": "(514) 771-1112"
+  },
+  {
+    "no-civ": 8812,
+    "rue": "boul. René-Lévesque",
+    "ville": "Montréal",
+    "code-postal": "H1H 7G2",
+    "prenom": "Peter",
+    "nom": "Thomas",
+    "telephone": "(514) 661-6541"
+  }
+]
