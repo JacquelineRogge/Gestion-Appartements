@@ -4,11 +4,19 @@
    $strNomFichierCSS = "index.css";
    $strNomAuteur = "Jacqueline Rogge";
 
+// Variables systèmes -------------------------------------------------------------------------------------------
+   $strJSONAppartements = require_once "donnees/appartements.json";
+   $strJSONImmeubles = require_once "donnees/immeubles.json";
+
 // En tête de l'application -------------------------------------------------------------------------------------
    require_once "en-tete.php";
 
-//Récupération du paramètre à partir de la barre d'adresse du navigateur-----------------------------------------
-   $strValueRecherche = isset($_GET["ddlChoix"]) ? $_GET["ddlChoix"] : "Tous";
+/* Récupération de l'identifiant sélectionné */ 
+function parametre($strIDParam) {
+   return filter_input(INPUT_GET, $strIDParam, FILTER_SANITIZE_SPECIAL_CHARS) .
+          filter_input(INPUT_POST, $strIDParam, FILTER_SANITIZE_SPECIAL_CHARS);
+}
+$strIdentifiantSelectionne = parametre("ddlChoix");
 ?>
 
 <!--Contenu de l'application ----------------------------------------------------------------------------------->
@@ -16,11 +24,12 @@
    <p class="sTitreSection">
       Que désirez-vous faire...
    </p>
-   <select id="ddlChoix" name="ddlChoix" onchange="document.getElementById('frmSaisie').submit();">
-      <option value="">Sélectionnez</option>
+   <select id="ddlChoix" name="ddlChoix" onchange="document.getElementById('frmChoisie').submit();">
+      
       <option value="L">Afficher la liste des locataires</option>
       <option value="A">Afficher la liste des appartements</option>
-      <option value="I">Afficher la liste des immeubles</option>
+      <option value="I" selected>Afficher la liste des immeubles</option>
+      <option value="">Sélectionnez</option>
    </select>
 </div>
 
@@ -30,17 +39,7 @@
 ?>
 <!--Récupération du paramètre à partir de la barre d'adresse du navigateur -------------------------------------->
 <script type="text/javascript">
-    document.getElementById('ddlChoix').value = '<?php echo $strValueRecherche; ?>';      
-    function objb(strID) {
-        return document.getElementById(strID);    
-        }        
-    function select(strID, valueOuText) {
-        return valueOuText == undefined ? /* null fait l'affaire également */                 
-        objb(strID).options[objb(strID).selectedIndex].text :                 
-        objb(strID).options[objb(strID).selectedIndex].value;    
-        }        
-        if (document.getElementById('lblChoix'))       
-        document.getElementById('lblChoix').innerHTML = select('ddlChoix'); 
+document.getElementById('ddlChoix').value = '<?php echo $strChoixSelectionne; ?>';
 </script>
 </body>
 </html>
