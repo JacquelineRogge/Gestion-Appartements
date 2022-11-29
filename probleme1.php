@@ -1,14 +1,17 @@
 <?php
+// Connexion avec librairie -------------------------------------------------------------------------------------
+require_once "librairies/librairie-generale.php";
+
 // Variables systèmes -------------------------------------------------------------------------------------------
    $strTitreApplication = "Projet 1 : Gestion des appartements";
    $strNomFichierCSS = "index.css";
    $strNomAuteur = "Jacqueline Rogge";
 
 // En tête de l'application -------------------------------------------------------------------------------------
-   require_once "en-tete.php";
+require_once "en-tete.php";
 
-//Récupération du paramètre à partir de la barre d'adresse du navigateur-----------------------------------------
-   $strValueRecherche = isset($_GET["ddlChoix"]) ? $_GET["ddlChoix"] : "Tous";
+//Récupération de l'identifiant séléctionné ---------------------------------------------------------------------
+$strValueRecherche = parametre("ddlChoix");
 ?>
 
 <!--Contenu de l'application ----------------------------------------------------------------------------------->
@@ -24,23 +27,28 @@
    </select>
 </div>
 
+   <div id="divObjetJSON">  
+   <p  class="sTitreSection">         
+      <?php
+         if($strValueRecherche == "L"){
+            echo "Liste des locataires";
+         }else if($strValueRecherche == "A"){
+            echo "Liste des appartements";
+         }else if($strValueRecherche == "I"){
+            echo "Liste des immeubles";
+         }
+      ?>
+ 
+   
+</div>
+
 <?php
 // Pied de page de l'application ---------------------------------------------------------------------------------
    require_once "pied-page.php"; 
 ?>
 <!--Récupération du paramètre à partir de la barre d'adresse du navigateur -------------------------------------->
 <script type="text/javascript">
-    document.getElementById('ddlChoix').value = '<?php echo $strValueRecherche; ?>';      
-    function objb(strID) {
-        return document.getElementById(strID);    
-        }        
-    function select(strID, valueOuText) {
-        return valueOuText == undefined ? /* null fait l'affaire également */                 
-        objb(strID).options[objb(strID).selectedIndex].text :                 
-        objb(strID).options[objb(strID).selectedIndex].value;    
-        }        
-        if (document.getElementById('lblChoix'))       
-        document.getElementById('lblChoix').innerHTML = select('ddlChoix'); 
+document.getElementById('ddlChoix').value = '<?php echo $strValueRecherche; ?>';
 </script>
 </body>
 </html>
